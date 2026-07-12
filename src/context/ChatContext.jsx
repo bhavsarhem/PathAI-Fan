@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState } from 'react';
+import { useApp } from './AppContext';
 
 const ChatContext = createContext(null);
 
@@ -46,6 +47,7 @@ function parseIntent(message) {
 }
 
 export function ChatProvider({ children }) {
+  const { state } = useApp();
   const [messages, setMessages] = useState([
     {
       id: 'welcome',
@@ -69,7 +71,7 @@ export function ChatProvider({ children }) {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({ message: text, language: state?.currentUser?.language || 'en' })
       });
 
       if (!response.ok) throw new Error('API route not available');

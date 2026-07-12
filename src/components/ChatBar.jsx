@@ -148,6 +148,7 @@ export default function ChatBar() {
                 <button
                   onClick={handleSend}
                   disabled={!input.trim() || isLoading}
+                  aria-label="Send Message"
                   className="btn-gold w-9 h-9 flex items-center justify-center rounded-xl disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
                 >
                   <Send size={15} />

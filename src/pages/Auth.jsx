@@ -23,6 +23,7 @@ export default function Auth() {
   const [vehicle, setVehicle] = useState('');
   const [seat, setSeat] = useState('');
   const [gate, setGate] = useState('G1');
+  const [lang, setLang] = useState('en');
 
   // Change Password State
   const [chMobile, setChMobile] = useState('');
@@ -79,6 +80,7 @@ export default function Auth() {
         payload: {
           name: name || 'Demo Fan',
           vehicle_number: vehicle || null,
+          language: lang,
           tickets: seat ? [{
             ticket_id: 'TK_DEMO',
             seat_number: seat,
@@ -334,6 +336,15 @@ export default function Auth() {
                   <label style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: '6px' }}>Entry Gate</label>
                   <select value={gate} onChange={e => setGate(e.target.value)} className="input-field w-full" style={{ padding: '12px 14px', fontSize: '0.9rem' }}>
                     {['G1','G2','G3','G4','G5','G6','G7','G8'].map(g => <option key={g} value={g}>{g}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: '6px' }}>Preferred Language</label>
+                  <select value={lang} onChange={e => setLang(e.target.value)} className="input-field w-full" style={{ padding: '12px 14px', fontSize: '0.9rem' }}>
+                    <option value="en">English</option>
+                    <option value="es">Español (Spanish)</option>
+                    <option value="fr">Français (French)</option>
+                    <option value="de">Deutsch (German)</option>
                   </select>
                 </div>
                 <div>

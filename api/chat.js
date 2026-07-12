@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { message } = req.body;
+  const { message, language = 'en' } = req.body;
   if (!message) {
     return res.status(400).json({ error: 'Message is required' });
   }
@@ -34,7 +34,9 @@ ${stadiumContext}
 -----------------------
 
 If the context doesn't have the answer, just give a helpful general answer.
-If the user asks to navigate somewhere (like washroom, food, SOS, exit), append a ROUTE command at the very end of your response, e.g., ROUTE:/fan/washroom, ROUTE:/fan/food, ROUTE:/fan/parking, ROUTE:/fan/exit, ROUTE:/fan/sos, ROUTE:/fan/find-person, ROUTE:/fan/women-safety, ROUTE:/fan/seat, ROUTE:/fan/emergency.`
+If the user asks to navigate somewhere (like washroom, food, SOS, exit), append a ROUTE command at the very end of your response, e.g., ROUTE:/fan/washroom, ROUTE:/fan/food, ROUTE:/fan/parking, ROUTE:/fan/exit, ROUTE:/fan/sos, ROUTE:/fan/find-person, ROUTE:/fan/women-safety, ROUTE:/fan/seat, ROUTE:/fan/emergency.
+
+IMPORTANT: You must respond in the following language: ${language === 'es' ? 'Spanish (Español)' : language === 'fr' ? 'French (Français)' : language === 'de' ? 'German (Deutsch)' : 'English'}. Keep any commands like "ROUTE:/path" in standard format as English ASCII exactly as specified.`
           },
           {
             role: 'user',
