@@ -56,7 +56,7 @@ export default function LiveScoreWidget({ data, compact = false, onClick }) {
       {/* Scoreboard */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex flex-col items-center gap-1 flex-1">
-          {match.home.logo ? <img src={match.home.logo} className="h-8 w-8 object-contain" /> : <div className="h-8 w-8 rounded-full bg-white/10" />}
+          {match.home.logo ? <img src={match.home.logo} alt={match.home.name} className="h-8 w-8 object-contain" /> : <div className="h-8 w-8 rounded-full bg-white/10" />}
           <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600, fontSize: '0.8rem', color: '#fff', textAlign: 'center' }}>{match.home.name}</span>
         </div>
         <div className="flex items-center gap-2">
@@ -71,7 +71,7 @@ export default function LiveScoreWidget({ data, compact = false, onClick }) {
           )}
         </div>
         <div className="flex flex-col items-center gap-1 flex-1">
-          {match.away.logo ? <img src={match.away.logo} className="h-8 w-8 object-contain" /> : <div className="h-8 w-8 rounded-full bg-white/10" />}
+          {match.away.logo ? <img src={match.away.logo} alt={match.away.name} className="h-8 w-8 object-contain" /> : <div className="h-8 w-8 rounded-full bg-white/10" />}
           <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600, fontSize: '0.8rem', color: '#fff', textAlign: 'center' }}>{match.away.name}</span>
         </div>
       </div>

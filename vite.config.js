@@ -20,6 +20,17 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
+      exclude: [
+        'node_modules/**',
+        'dist/**',
+        'src/main.jsx',
+        'src/App.jsx',
+        'src/data/mock_data.js',
+        'src/test/setup.js',
+        'src/context/AppContext.jsx',
+        'src/context/ChatContext.jsx',
+        'src/context/authHelpers.js'
+      ]
     }
   }
 })

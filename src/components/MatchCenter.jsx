@@ -76,6 +76,7 @@ export default function MatchCenter({ data, onClose }) {
         <h2 className="font-outfit font-bold text-lg text-white">Live Match Center</h2>
         <button 
           onClick={onClose}
+          aria-label="Close Match Center"
           className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-white/20"
         >
           ✕
