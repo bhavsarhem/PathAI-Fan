@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { useLiveScores } from '../../hooks/useLiveScores';
 import Navbar from '../../components/Navbar';
 import LiveScoreWidget from '../../components/LiveScoreWidget';
+import MatchCenter from '../../components/MatchCenter';
 
 const ORGANIZER_MENUS = [
   { icon: '📊', label: 'Live Crowd Count',   route: '/staff/crowd',     color: '#2B6CB0', roles: ['organizer','volunteer','security'] },
@@ -27,6 +30,8 @@ const tileVariants = {
 export default function StaffDashboard() {
   const { state } = useApp();
   const navigate = useNavigate();
+  const liveScores = useLiveScores();
+  const [matchCenterOpen, setMatchCenterOpen] = useState(false);
   const role = state.userRole;
   const staff = state.currentUser;
   const roleConfig = ROLE_COLORS[role] || ROLE_COLORS.volunteer;
@@ -59,7 +64,7 @@ export default function StaffDashboard() {
             {[
               { label: 'Open Incidents', value: openIncidents, color: '#E53E3E' },
               { label: 'Total Zones', value: 8, color: '#2B6CB0' },
-              { label: 'Match Minute', value: `${state.match?.minute}'`, color: '#10B981' },
+              { label: 'Match Minute', value: liveScores.featuredMatch?.statusState === 'in' ? liveScores.featuredMatch.statusDetail : "0'", color: '#10B981' },
             ].map(s => (
               <div key={s.label} className="glass-card" style={{ padding: '14px 16px', textAlign: 'center' }}>
                 <p style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, fontSize: '1.6rem', color: s.color, lineHeight: 1 }}>{s.value}</p>
@@ -71,7 +76,7 @@ export default function StaffDashboard() {
 
         {/* Live Score */}
         <div style={{ marginBottom: '24px' }}>
-          <LiveScoreWidget compact />
+          <LiveScoreWidget data={liveScores} compact onClick={() => setMatchCenterOpen(true)} />
         </div>
 
         {/* Menu tiles */}
@@ -102,6 +107,7 @@ export default function StaffDashboard() {
           ))}
         </motion.div>
       </div>
+      {matchCenterOpen && <MatchCenter data={liveScores} onClose={() => setMatchCenterOpen(false)} />}
     </div>
   );
 }

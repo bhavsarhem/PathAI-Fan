@@ -6,6 +6,9 @@ import LiveScoreWidget from '../../components/LiveScoreWidget';
 import SOSButton from '../../components/SOSButton';
 import ZoneBadge from '../../components/ZoneBadge';
 import Navbar from '../../components/Navbar';
+import MatchCenter from '../../components/MatchCenter';
+import { useLiveScores } from '../../hooks/useLiveScores';
+import { useState } from 'react';
 
 const MENU_ITEMS = [
   { icon: '🧭', label: 'Find My Seat',       route: '/fan/seat',          color: '#2B6CB0' },
@@ -27,6 +30,9 @@ const tileVariants = {
 export default function FanDashboard() {
   const { state } = useApp();
   const navigate = useNavigate();
+  const liveScores = useLiveScores();
+  const [matchCenterOpen, setMatchCenterOpen] = useState(false);
+  
   const fan = state.currentUser;
   const ticket = fan?.tickets?.[0];
   const zone = ticket?.seat_number?.charAt(0)?.toUpperCase() || 'G';
@@ -74,7 +80,7 @@ export default function FanDashboard() {
 
           {/* Live Score compact */}
           <div style={{ marginBottom: '20px' }}>
-            <LiveScoreWidget compact />
+            <LiveScoreWidget data={liveScores} compact onClick={() => setMatchCenterOpen(true)} />
           </div>
 
           {/* Menu Grid */}
@@ -88,7 +94,7 @@ export default function FanDashboard() {
               if (item.isScore) {
                 return (
                   <motion.div key={item.label} variants={tileVariants} className="menu-tile" style={{ padding: '20px', gridColumn: 'span 2' }}>
-                    <LiveScoreWidget />
+                    <LiveScoreWidget data={liveScores} onClick={() => setMatchCenterOpen(true)} />
                   </motion.div>
                 );
               }
@@ -137,10 +143,11 @@ export default function FanDashboard() {
           <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', color: 'rgba(255,255,255,0.4)' }}>MetLife Stadium · Zone {zone}</p>
         </div>
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <LiveScoreWidget compact />
+          <LiveScoreWidget data={liveScores} compact onClick={() => setMatchCenterOpen(true)} />
           <SOSButton size="normal" />
         </div>
       </div>
+      {matchCenterOpen && <MatchCenter data={liveScores} onClose={() => setMatchCenterOpen(false)} />}
     </div>
   );
 }
