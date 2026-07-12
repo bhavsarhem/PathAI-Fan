@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState } from 'react';
 
 const ChatContext = createContext(null);
@@ -89,7 +90,7 @@ export function ChatProvider({ children }) {
         setTimeout(() => { navigate(data.route); setIsOpen(false); }, 1500);
       }
 
-    } catch (err) {
+    } catch {
       console.warn("Backend API not reachable (likely local dev without Vercel CLI). Falling back to local mock.");
       
       // Fallback: Use the original pattern-matching logic

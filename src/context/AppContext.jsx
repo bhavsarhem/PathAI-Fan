@@ -1,5 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useReducer, useEffect } from 'react';
-import { DEMO_FANS, DEMO_STAFF, DEMO_INCIDENTS, DEMO_CROWD_COUNTS, DEMO_MATCH, DEMO_RULES } from '../data/mock_data';
+import { DEMO_INCIDENTS, DEMO_CROWD_COUNTS, DEMO_MATCH, DEMO_RULES } from '../data/mock_data';
 
 const AppContext = createContext(null);
 
@@ -131,7 +132,7 @@ export function AppProvider({ children }) {
       emergencyGateAssignments: state.emergencyGateAssignments,
     };
     localStorage.setItem('pathai_stadium_shared_state', JSON.stringify(shared));
-  }, [state?.crowdCounts, state?.incidents, state?.rules, state?.emergencyMode, state?.emergencyGateAssignments]);
+  }, [state]);
 
   // Sync from localStorage on external storage updates (other tabs/windows)
   useEffect(() => {
@@ -180,52 +181,4 @@ export function useApp() {
   return context;
 }
 
-// ─── Helper: login as demo fan ────────────────────────────────────────────────
-export function loginAsFan(dispatch, mobile) {
-  const fan = DEMO_FANS.find(f => f.mobile === mobile) || {
-    fan_id: `FAN_${Date.now()}`,
-    name: 'Demo Fan',
-    mobile,
-    vehicle_number: null,
-    language: 'en',
-    tickets: [],
-    linked_companions: []
-  };
-  dispatch({ type: 'LOGIN', payload: { user: fan, role: 'fan' } });
-}
-
-export function loginAsStaff(dispatch, mobile) {
-  const staff = DEMO_STAFF.find(s => s.mobile === mobile) || DEMO_STAFF[0];
-  dispatch({ type: 'LOGIN', payload: { user: staff, role: staff.role } });
-}
-
-// ─── Helper: password verification ────────────────────────────────────────────
-export function checkPassword(mobile, password) {
-  const stored = localStorage.getItem('pathai_user_passwords');
-  let passwords = {};
-  if (stored) {
-    try {
-      passwords = JSON.parse(stored);
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  const correctPassword = passwords[mobile] || 'Test@123';
-  return password === correctPassword;
-}
-
-export function updatePassword(mobile, currentPassword, newPassword) {
-  if (!checkPassword(mobile, currentPassword)) {
-    return { success: false, message: 'Current password is incorrect' };
-  }
-  const stored = localStorage.getItem('pathai_user_passwords') || '{}';
-  let passwords = {};
-  try {
-    passwords = JSON.parse(stored);
-  } catch (e) {
-    console.error(e);
-  }
-  passwords[mobile] = newPassword;
-  localStorage.setItem('pathai_user_passwords', JSON.stringify(passwords));
-  return { success: true };
-}
+// Helpers are now exported from authHelpers.js to avoid Fast Refresh component export warnings

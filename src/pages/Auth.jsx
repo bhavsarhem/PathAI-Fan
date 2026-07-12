@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useApp, loginAsFan, loginAsStaff, checkPassword, updatePassword } from '../context/AppContext';
-import { Trophy, Phone, Shield, ArrowRight, CheckCircle2, Key, Eye, EyeOff } from 'lucide-react';
+import { useApp } from '../context/AppContext';
+import { loginAsFan, loginAsStaff, checkPassword, updatePassword } from '../context/authHelpers';
+import { Trophy, Shield, ArrowRight, CheckCircle2, Key, Eye, EyeOff } from 'lucide-react';
 
 const STAFF_MOBILES = ['7654321098', '6543210987', '5432109876', '4321098765', '3210987654'];
 

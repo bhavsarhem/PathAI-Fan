@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Clock } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
-import { ZONE_NEAREST, getSeatZone } from '../../data/mock_data';
+import { getSeatZone } from '../../data/mock_data';
 import { DEMO_STAFF } from '../../data/mock_data';
 import Navbar from '../../components/Navbar';
 
@@ -22,7 +22,6 @@ export default function SOS() {
 
   const seat = state.currentUser?.tickets?.[0]?.seat_number || 'A42';
   const zone = getSeatZone(seat);
-  const nearestSecurity = ZONE_NEAREST[zone]?.security || 'SP1';
   const staffInZone = DEMO_STAFF.find(s => s.assigned_zone === zone && s.availability === 'available');
 
   const handleSOS = async () => {

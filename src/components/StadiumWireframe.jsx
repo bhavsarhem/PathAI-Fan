@@ -15,7 +15,7 @@ const FoodIcon = ({ x, y }) => (
   </g>
 );
 
-const GateIcon = ({ x, y, label, id, highlighted }) => (
+const GateIcon = ({ x, y, id, highlighted }) => (
   <g transform={`translate(${x},${y})`}>
     <rect x="-22" y="-12" width="44" height="24" rx="6"
       fill={highlighted ? "#10B981" : "rgba(255,255,255,0.1)"}
@@ -29,7 +29,7 @@ const GateIcon = ({ x, y, label, id, highlighted }) => (
   </g>
 );
 
-const ParkingIcon = ({ x, y, id }) => (
+const ParkingIcon = ({ x, y }) => (
   <g transform={`translate(${x},${y})`}>
     <rect x="-14" y="-10" width="28" height="20" rx="4" fill="#1A2F5A" stroke="rgba(16, 185, 129,0.4)" strokeWidth="1" />
     <text textAnchor="middle" dominantBaseline="central" fontSize="9" fill="#10B981" fontWeight="700" fontFamily="Outfit, sans-serif">P</text>
@@ -61,8 +61,6 @@ export default function StadiumWireframe({
   showSecurity = false,
   interactive = false,
   onZoneClick = null,
-  width = 700,
-  height = 540,
 }) {
   const { zones, gates, washrooms, food_counters, parking_zones, first_aid, security_points } = stadiumLayout;
   const vw = stadiumLayout.svg_width;
@@ -128,13 +126,13 @@ export default function StadiumWireframe({
 
         {/* Gates */}
         {gates.map(gate => (
-          <GateIcon key={gate.gate_id} x={gate.x} y={gate.y} id={gate.gate_id} label={gate.label} highlighted={highlightGate === gate.gate_id} />
+          <GateIcon key={gate.gate_id} x={gate.x} y={gate.y} id={gate.gate_id} highlighted={highlightGate === gate.gate_id} />
         ))}
 
         {/* Facilities */}
         {showWashrooms && washrooms.map(w => <WashroomIcon key={w.id} x={w.x} y={w.y} accessible={w.accessible} />)}
         {showFood      && food_counters.map(f => <FoodIcon key={f.id} x={f.x} y={f.y} />)}
-        {showParking   && parking_zones.map(p => <ParkingIcon key={p.id} x={p.x} y={p.y} id={p.id} />)}
+        {showParking   && parking_zones.map(p => <ParkingIcon key={p.id} x={p.x} y={p.y} />)}
         {showFirstAid  && first_aid.map(fa => <FirstAidIcon key={fa.id} x={fa.x} y={fa.y} />)}
         {showSecurity  && security_points.map(sp => <SecurityIcon key={sp.id} x={sp.x} y={sp.y} />)}
       </svg>

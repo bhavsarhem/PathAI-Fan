@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Clock, MapPin, User, CheckCircle2, Siren } from 'lucide-react';
+import { Clock, MapPin, User, CheckCircle2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 const TYPE_CONFIG = {

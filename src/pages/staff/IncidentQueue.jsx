@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Filter } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import IncidentCard from '../../components/IncidentCard';
 import Navbar from '../../components/Navbar';

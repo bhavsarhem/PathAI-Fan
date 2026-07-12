@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
-import { ZONE_GATE_MAP, getEvacuationGate, GATE_DIRECTIONS } from '../../data/mock_data';
+import { ZONE_GATE_MAP, getEvacuationGate } from '../../data/mock_data';
 import Navbar from '../../components/Navbar';
 
 const ZONES = ['A','B','C','D','E','F','G','H'];

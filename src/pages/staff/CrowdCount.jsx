@@ -11,7 +11,7 @@ function getColor(pct) {
   return '#38A169';
 }
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload?.length) {
     const d = payload[0].payload;
     const pct = Math.round((d.current / d.capacity) * 100);

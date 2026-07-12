@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Plus, Trash2, Save } from 'lucide-react';
+import { ArrowLeft, Trash2, Save } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import StadiumWireframe from '../../components/StadiumWireframe';
 import Navbar from '../../components/Navbar';

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Clock, Star } from 'lucide-react';
+import { ArrowLeft, Clock } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import stadiumLayout from '../../data/stadium_layout.json';
 import { ZONE_NEAREST, getSeatZone } from '../../data/mock_data';

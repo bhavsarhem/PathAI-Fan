@@ -57,7 +57,7 @@ If the user asks to navigate somewhere (like washroom, food, SOS, exit), append 
 
     // 3. Parse routing if the AI provided one
     let route = null;
-    const routeMatch = reply.match(/ROUTE:(\/[a-zA-Z0-9\-\/]+)/);
+    const routeMatch = reply.match(/ROUTE:(\/[a-zA-Z0-9\-/]+)/);
     if (routeMatch) {
       route = routeMatch[1];
       reply = reply.replace(routeMatch[0], '').trim();

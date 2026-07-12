@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Trophy, Navigation2, Siren, Users, Zap, ChevronRight, Shield } from 'lucide-react';
+import { Trophy, ChevronRight, Shield } from 'lucide-react';
 import LiveScoreWidget from '../components/LiveScoreWidget';
 import stadiumBg from '../assets/stadium_bg.jpg';
 

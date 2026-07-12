@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { getSeatZone } from '../../data/mock_data';
 import Navbar from '../../components/Navbar';
